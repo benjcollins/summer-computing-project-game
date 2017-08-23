@@ -1,2 +1,2 @@
-# SummerCOmputingProjectGame
+# SummerComputingProjectGame
 My summer school computing project to create a game.
