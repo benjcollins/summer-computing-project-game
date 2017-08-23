@@ -133,4 +133,7 @@ class Canvas (Thread):
 		for i in range(0, len(self.layerNames)):
 			name = self.layerNames[i]
 			if name == shape.layer:
-				self.layers[i].remove(shape)
+				try:
+					self.layers[i].remove(shape)
+				except ValueError:
+					pass

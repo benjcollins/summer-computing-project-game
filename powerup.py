@@ -42,16 +42,21 @@ class PowerUp:
 				self.game.canvas.remove(self.text)
 				self.text = False
 				self.power = "none"
-				self.laserOff()
+				player.laserOff()
 
 		if self.power == "rapid fire":
 			if self.next_shot < time.time():
 				self.next_shot += RAPID_FIRE_DURATION
 				player.shoot(0, 0)
 
-		xcheck = abs(self.shape.x - player.shape.x) < PLAYER_SIZE / 2
-		ycheck = abs(self.shape.y - player.shape.y) < PLAYER_SIZE / 2 
-		if xcheck and ycheck and self.power == "none":
+		hit = False
+		for bullet in player.bullets:
+			xcheck = abs(self.shape.x - bullet.shape.x) * 2 < BULLET_SIZE + POWERUP_BLINK_SIZE
+			ycheck = abs(self.shape.y - bullet.shape.y) * 2 < BULLET_SIZE + POWERUP_BLINK_SIZE
+			if xcheck and ycheck:
+				hit = True
+		
+		if hit and self.power == "none":
 			self.power = choice(["rapid fire", "laser"])
 			self.text = Text(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, self.power, POWERUP_COLORA, layer = "ui", font_size = 80, font_name = "Capture it")
 			self.game.canvas.add(self.text)
