@@ -82,8 +82,8 @@ class Player:
 		vy = math.sin(direction) * BULLET_SPEED
 
 		b = Bullet(self.shape.x, self.shape.y, vx, vy, self)
-		self.vx -= b.vx / RECOIL_FACTOR
-		self.vy -= b.vy / RECOIL_FACTOR
+		self.vx -= b.vx * RECOIL_FACTOR
+		self.vy -= b.vy * RECOIL_FACTOR
 		self.accuracy += 5
 		self.accuracy = min(self.accuracy, 60)
 
