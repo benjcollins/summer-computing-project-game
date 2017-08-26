@@ -86,6 +86,8 @@ class Canvas (Thread):
 					shape.draw(self)
 			
 			pygame.display.flip()
+
+		pygame.display.quit()
 		
 	def add(self, shape):
 		for i in range(0, len(self.layerNames)):

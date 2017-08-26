@@ -49,7 +49,7 @@ class Enemy:
 		diffx = player.shape.x - self.shape.x
 		diffy = player.shape.y - self.shape.y
 		length = math.sqrt(diffx ** 2 + diffy ** 2)
-		scale = 3 / length
+		scale = ENEMY_MAX_SPEED / length
 		vx = diffx * scale
 		vy = diffy * scale
 		
