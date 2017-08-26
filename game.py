@@ -20,7 +20,7 @@ class Game:
 		self.enemy_health = ENEMY_START_HEALTH
 		self.enemy_speed = ENEMY_START_SPEED
 		self.enemies_killed = 0
-		self.score = Text(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50, "Score: 0", "#ffffff", layer = "ui", font_size = 35, font_name = "Capture it")
+		self.score = Text(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50, "Score: 0", "#ffffff", layer = "ui", font_size = 35, font_name = "FreeSans Bold")
 		
 		for i in range(0, 100):
 			self.canvas.add(Rect((random() * 2 - 1) * MAP_SIZE, (random() * 2 - 1) * MAP_SIZE, 1, 1, "#ffffff", layer = "background"))
@@ -51,7 +51,7 @@ class Game:
 				self.update()
 				
 		if self.canvas.running:
-			msg = Text(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, "GAME OVER", "#ff0000", layer = "ui", font_size = 80, font_name = "Capture it")
+			msg = Text(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, "GAME OVER", "#ff0000", layer = "ui", font_size = 80, font_name = "FreeSans Bold")
 			
 			self.canvas.add(msg)
 			time.sleep(2)
@@ -98,13 +98,14 @@ class Game:
 		self.player.update(self.asteroids, self.enemies)
 
 		if len(self.enemies) == 0:
-			self.enemy_count += 1
 			if self.enemy_count >= MAX_ENEMIES:
 				self.enemy_count = 1
 				self.enemy_health += 1
 			if self.enemy_health >= ENEMY_MAX_HEALTH:
 				self.enemy_health = ENEMY_START_HEALTH
 				self.enemy_speed += 0.1
+
+			self.enemy_count += 1
 
 			for i in range(0, self.enemy_count):
 				self.enemies.append(Enemy(self, self.enemy_speed, self.enemy_health))

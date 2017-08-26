@@ -58,7 +58,7 @@ class PowerUp:
 		
 		if hit and self.power == "none":
 			self.power = choice(["rapid fire", "laser"])
-			self.text = Text(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, self.power, POWERUP_COLORA, layer = "ui", font_size = 80, font_name = "Capture it")
+			self.text = Text(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, self.power, POWERUP_COLORA, layer = "ui", font_size = 80, font_name = "FreeSans Bold")
 			self.game.canvas.add(self.text)
 			self.shape.x = (random() * 2 - 1) * MAP_SIZE
 			self.shape.y = (random() * 2 - 1) * MAP_SIZE
