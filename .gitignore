@@ -1,0 +1,13 @@
+.vscode/settings.json
+.vscode/tags
+__pycache__/asteroid.cpython-35.pyc
+__pycache__/bullet.cpython-35.pyc
+__pycache__/canvas.cpython-35.pyc
+__pycache__/consts.cpython-35.pyc
+__pycache__/enemy.cpython-35.pyc
+__pycache__/networking.cpython-35.pyc
+__pycache__/player.cpython-35.pyc
+__pycache__/polygon.cpython-35.pyc
+__pycache__/powerup.cpython-35.pyc
+__pycache__/rect.cpython-35.pyc
+__pycache__/text.cpython-35.pyc
