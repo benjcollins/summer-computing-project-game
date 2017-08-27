@@ -79,7 +79,10 @@ class Canvas (Thread):
 				
 				if event.type == pygame.KEYUP:
 					key = pygame.key.name(event.key)
-					self.keys.pop(key)
+					try:
+						self.keys.pop(key)
+					except KeyError:
+						pass
 					if key in self.key_up_callbacks:
 						self.key_up_callbacks[key]()
 			
