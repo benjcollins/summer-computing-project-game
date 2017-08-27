@@ -11,4 +11,4 @@ I have created a classic 2D space shooter game using a canvas wrapper i  wrote a
 ## Features
 
 ## Screenshots
-![alt text](https://github.com/thecollinsprogram/SummerComputingProjectGame/tree/master/screenshots/screenshot1.png "Logo Title Text 1")
+![alt text](https://github.com/thecollinsprogram/SummerComputingProjectGame/blob/master/screenshots/screenshot1.png?raw=true "Logo Title Text 1")
