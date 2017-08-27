@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from canvas.canvas import *
 from consts import *
 

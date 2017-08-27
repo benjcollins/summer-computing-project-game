@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 TIME_STEP = 0.01
 WINDOW_WIDTH = 600
 WINDOW_HEIGHT = 400

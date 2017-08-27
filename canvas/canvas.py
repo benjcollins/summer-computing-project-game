@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import pygame
 from threading import *
 from canvas.rect import *

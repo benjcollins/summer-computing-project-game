@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from networking import *
 from canvas.canvas import *
 from player import *
