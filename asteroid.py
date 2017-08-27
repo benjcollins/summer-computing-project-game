@@ -1,4 +1,4 @@
-from canvas import *
+from canvas.canvas import *
 from consts import *
 from random import *
 import math

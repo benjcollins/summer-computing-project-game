@@ -1,4 +1,4 @@
-from canvas import *
+from canvas.canvas import *
 from consts import *
 from bullet import *
 import math
@@ -17,11 +17,10 @@ class Player:
 		self.vy = 0
 		self.accuracy = 0
 		self.bullets = []
-		self.using_laser = False
-		self.laser = Polygon([(0, 0), (0, 0)], "#ff0000", thickness = 5, layer = "content")
 		self.health_green = Rect(0, 0, WINDOW_WIDTH, 20, HEALTH_COLOR, layer = "ui", flow = "right")
 		self.health_red = Rect(0, 0, WINDOW_WIDTH, 20, DAMAGE_COLOR, layer = "ui", flow = "right")
 		self.alive = True
+		self.bullet_count = 1
 
 		self.game.canvas.add(self.crosshair1)
 		self.game.canvas.add(self.crosshair2)
@@ -33,16 +32,8 @@ class Player:
 		self.bounceOfEdges()
 		self.drawCrossHair()
 		self.updateBullets(asteroids, enemies)
-		self.updateLaser(enemies)
 		self.shape.x += self.vx
 		self.shape.y += self.vy
-
-	def updateLaser(self, enemies):
-		if self.using_laser:
-			mx = self.game.canvas.mouse_x - self.game.canvas.getLayerOffsetX("content")
-			my = self.game.canvas.mouse_y - self.game.canvas.getLayerOffsetY("content")
-			self.laser.points[0] = (self.shape.x, self.shape.y)
-			self.laser.points[1] = (mx, my)
 
 	def bounceOfEdges(self):
 		if self.shape.x + PLAYER_SIZE / 2 > MAP_SIZE:
@@ -57,10 +48,10 @@ class Player:
 	def drawCrossHair(self):
 		min_, max_ = self.calcMaxAndMin()
 
-		cross1x = self.shape.x + math.cos(max_) * 50
-		cross1y = self.shape.y + math.sin(max_) * 50
-		cross2x = self.shape.x + math.cos(min_) * 50
-		cross2y = self.shape.y + math.sin(min_) * 50
+		cross1x = self.shape.x + math.cos(max_) * CROSSHAIR_SIZE
+		cross1y = self.shape.y + math.sin(max_) * CROSSHAIR_SIZE
+		cross2x = self.shape.x + math.cos(min_) * CROSSHAIR_SIZE
+		cross2y = self.shape.y + math.sin(min_) * CROSSHAIR_SIZE
 		
 		self.crosshair1.points[0] = (self.shape.x, self.shape.y)
 		self.crosshair2.points[0] = (self.shape.x, self.shape.y)
@@ -76,14 +67,22 @@ class Player:
 
 	def shoot(self, x, y):
 		min_, max_ = self.calcMaxAndMin()
+		self.bullet_count = max(self.bullet_count, 1)
+		self.bullet_count = min(self.bullet_count, MAX_BULLETS)
+		recoilx = 0
+		recoily = 0
 
-		direction = min_ + random.random() * (max_ - min_)
-		vx = math.cos(direction) * BULLET_SPEED
-		vy = math.sin(direction) * BULLET_SPEED
+		for i in range(0, self.bullet_count):
+			direction = min_ + random.random() * (max_ - min_)
+			vx = math.cos(direction) * BULLET_SPEED
+			vy = math.sin(direction) * BULLET_SPEED
+			b = Bullet(self.shape.x, self.shape.y, vx, vy, self)
+			recoilx += b.vx
+			recoily += b.vy
+			
+		self.vx -= recoilx / self.bullet_count * RECOIL_FACTOR
+		self.vy -= recoily / self.bullet_count * RECOIL_FACTOR
 
-		b = Bullet(self.shape.x, self.shape.y, vx, vy, self)
-		self.vx -= b.vx * RECOIL_FACTOR
-		self.vy -= b.vy * RECOIL_FACTOR
 		self.accuracy += 5
 		self.accuracy = min(self.accuracy, 60)
 
@@ -104,16 +103,9 @@ class Player:
 		min_ = theta + math.radians(self.accuracy)
 
 		return (min_, max_)
-
-	def laserOn(self):
-		self.using_laser = True
-		self.game.canvas.add(self.laser)
-
-	def laserOff(self):
-		self.using_laser = False
-		self.game.canvas.remove(self.laser)
 		
 	def damage(self):
 		self.health_green.w -= WINDOW_WIDTH / MAX_HEALTH
+		self.bullet_count = 0
 		if not self.health_green.w > 0:
 			self.alive = False

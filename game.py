@@ -1,5 +1,5 @@
 from networking import *
-from canvas import *
+from canvas.canvas import *
 from player import *
 from asteroid import *
 from consts import *
@@ -23,9 +23,13 @@ class Game:
 		self.score = Text(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50, "Score: 0", "#ffffff", layer = "ui", font_size = 35, font_name = "FreeSans Bold")
 		
 		for i in range(0, 100):
-			self.canvas.add(Rect((random() * 2 - 1) * MAP_SIZE, (random() * 2 - 1) * MAP_SIZE, 1, 1, "#ffffff", layer = "background"))
+			x = (random() * 2 - 1) * MAP_SIZE
+			y = (random() * 2 - 1) * MAP_SIZE
+			self.canvas.add(Rect(x, y, 1, 1, "#ffffff", layer = "background"))
 		for i in range(0, 100):
-			self.canvas.add(Rect((random() * 2 - 1) * MAP_SIZE, (random() * 2 - 1) * MAP_SIZE, 3, 3, "#ffffff", layer = "content"))
+			x = (random() * 2 - 1) * MAP_SIZE
+			y = (random() * 2 - 1) * MAP_SIZE
+			self.canvas.add(Rect(x, y, 3, 3, "#ffffff", layer = "content"))
 			
 		self.asteroids = []
 		for i in range(0, 15):
@@ -103,7 +107,7 @@ class Game:
 				self.enemy_health += 1
 			if self.enemy_health >= ENEMY_MAX_HEALTH:
 				self.enemy_health = ENEMY_START_HEALTH
-				self.enemy_speed += 0.1
+				self.enemy_speed += ENEMY_SPEED_INCREASE
 
 			self.enemy_count += 1
 

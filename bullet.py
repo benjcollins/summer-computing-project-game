@@ -1,4 +1,4 @@
-from canvas import *
+from canvas.canvas import *
 from consts import *
 
 class Bullet:
@@ -31,7 +31,7 @@ class Bullet:
 			xcheck = abs(self.shape.x - e.shape.x) < PLAYER_SIZE / 2
 			ycheck = abs(self.shape.y - e.shape.y) < PLAYER_SIZE / 2
 			if xcheck and ycheck:
-				e.hit()
+				e.hit(self.player)
 				self.delete()
 
 		if self.shape.x > MAP_SIZE:

@@ -1,8 +1,8 @@
 import pygame
 from threading import *
-from rect import *
-from text import *
-from polygon import *
+from canvas.rect import *
+from canvas.text import *
+from canvas.polygon import *
 
 pygame.init()
 

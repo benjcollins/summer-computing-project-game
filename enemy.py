@@ -1,4 +1,4 @@
-from canvas import *
+from canvas.canvas import *
 from consts import *
 from bullet import *
 from random import *
@@ -63,10 +63,11 @@ class Enemy:
 		else:
 			self.vy -= self.speed
 
-	def hit(self):
+	def hit(self, player):
 		self.health -= 1
 		if self.health < 0:
 			self.game.enemies_killed += 1
+			player.bullet_count += 1
 			self.die()
 			
 	def bounceOfEdges(self):
