@@ -17,6 +17,8 @@ class Rect:
 		self.layer = layer
 		
 	def draw(self, canvas):
+		# Work out the users flow and ajust the x and y accordingly.
+		# Also add the layer offsets and this point.
 		if self.flow == "center":
 			x = self.x - self.w / 2 + canvas.getLayerOffsetX(self.layer)
 			y = self.y - self.h / 2 + canvas.getLayerOffsetY(self.layer)
@@ -31,11 +33,13 @@ class Rect:
 		
 		coords = (x, y, self.w, self.h)
 			
+		# Convert hex color to (r, g, b) tuple.
 		r = int(self.color[1:3], 16)
 		g = int(self.color[3:5], 16)
 		b = int(self.color[5:7], 16)
 		color = (r, g, b)
 		
+		# If the shape is inside the screen draw it.
 		if x < canvas.width and x + self.w > 0:
 		    if y < canvas.height and y + self.h > 0:
 		        pygame.draw.rect(canvas.window, color, coords, self.thickness)

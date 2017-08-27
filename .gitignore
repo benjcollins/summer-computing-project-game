@@ -11,3 +11,7 @@ __pycache__/polygon.cpython-35.pyc
 __pycache__/powerup.cpython-35.pyc
 __pycache__/rect.cpython-35.pyc
 __pycache__/text.cpython-35.pyc
+canvas/__pycache__/canvas.cpython-35.pyc
+canvas/__pycache__/polygon.cpython-35.pyc
+canvas/__pycache__/rect.cpython-35.pyc
+canvas/__pycache__/text.cpython-35.pyc
