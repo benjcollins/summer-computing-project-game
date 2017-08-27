@@ -37,5 +37,4 @@ class PowerUp:
 		if hit:
 			self.shape.x = (random() * 2 - 1) * MAP_SIZE
 			self.shape.y = (random() * 2 - 1) * MAP_SIZE
-			player.health_green.w += 3 / MAX_HEALTH * WINDOW_WIDTH
-			player.health_green.w = min(player.health_green.w, WINDOW_WIDTH)
+			player.health_green.w = player.health_yellow.w

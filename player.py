@@ -19,8 +19,9 @@ class Player:
 		self.vy = 0
 		self.accuracy = 0
 		self.bullets = []
-		self.health_green = Rect(0, 0, WINDOW_WIDTH, 20, HEALTH_COLOR, layer = "ui", flow = "right")
-		self.health_red = Rect(0, 0, WINDOW_WIDTH, 20, DAMAGE_COLOR, layer = "ui", flow = "right")
+		self.health_green = Rect(0, WINDOW_HEIGHT - 20, WINDOW_WIDTH, 20, HEALTH_COLOR, layer = "ui", flow = "right")
+		self.health_red = Rect(0, WINDOW_HEIGHT - 20, WINDOW_WIDTH, 20, DAMAGE_COLOR, layer = "ui", flow = "right")
+		self.health_yellow = Rect(0, WINDOW_HEIGHT - 20, WINDOW_WIDTH, 20, RESTORE_COLOR, layer = "ui", flow = "right")
 		self.alive = True
 		self.bullet_count = 1
 
@@ -28,14 +29,20 @@ class Player:
 		self.game.canvas.add(self.crosshair2)
 		self.game.canvas.add(self.shape)
 		self.game.canvas.add(self.health_red)
+		self.game.canvas.add(self.health_yellow)
 		self.game.canvas.add(self.health_green)
 
 	def update(self, asteroids, enemies):
 		self.bounceOfEdges()
 		self.drawCrossHair()
 		self.updateBullets(asteroids, enemies)
+		self.updateRestore()
 		self.shape.x += self.vx
 		self.shape.y += self.vy
+
+	def updateRestore(self):
+		if self.health_yellow.w > self.health_green.w:
+			self.health_yellow.w -= RESTORE_SPEED
 
 	def bounceOfEdges(self):
 		if self.shape.x + PLAYER_SIZE / 2 > MAP_SIZE:
