@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# Global constants made use of by the game.
+# By BEN COLLINS
+
 # CONSTANTS
 
 TIME_STEP = 0.01

@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# The runnable file for the game that mnages all resources.
+# By BEN COLLINS
+
 from networking import *
 from canvas.canvas import *
 from player import *

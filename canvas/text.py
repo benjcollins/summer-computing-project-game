@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# Represents a single line of text for the canvas.
+# By BEN COLLINS
+
 import pygame
 
 pygame.init()

@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# Represents the player for the game.
+# By BEN COLLINS
+
 from canvas.canvas import *
 from consts import *
 from bullet import *

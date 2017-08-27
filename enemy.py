@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# Represents and enemy for the game.
+# By BEN COLLINS
+
 from canvas.canvas import *
 from consts import *
 from bullet import *

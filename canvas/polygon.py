@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# Represents a polygon/line/list of lines for the canvas.
+# By BEN COLLINS
+
 import pygame
 
 pygame.init()

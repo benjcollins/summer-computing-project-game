@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# Represents an asteroid in the game.
+# By BEN COLLINS
+
 from canvas.canvas import *
 from consts import *
 from random import *

@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# A wrapper around pygame that gives you an object based drawing system and asynchronous callbacks.
+# By BEN COLLINS
+
 import pygame
 from threading import *
 from canvas.rect import *

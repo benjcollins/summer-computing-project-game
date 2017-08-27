@@ -1,6 +1,9 @@
 from socket import *
 from threading import *
 
+# An unused netwroking class that i originially write in prepartaion to give the game multiplayer functionality.
+# By BEN COLLINS
+
 QUIT = "%^@"
 
 class Server(Thread):
