@@ -95,33 +95,35 @@ class Player:
 
 	def shoot(self, x, y):
 
-		# Set the maximum and minimum value of the number of bullets before the player shoots.
-		self.bullet_count = max(self.bullet_count, 1)
-		self.bullet_count = min(self.bullet_count, MAX_BULLETS)
+		if not self.game.paused:
 
-		min_, max_ = self.calcMaxAndMin()
-		recoilx = 0
-		recoily = 0
+			# Set the maximum and minimum value of the number of bullets before the player shoots.
+			self.bullet_count = max(self.bullet_count, 1)
+			self.bullet_count = min(self.bullet_count, MAX_BULLETS)
 
-		for i in range(0, self.bullet_count):
-			# Calculate a random angle between the players crosshairs.
-			direction = min_ + random.random() * (max_ - min_)
-			# Use trig to convert this into a vector.
-			vx = math.cos(direction) * BULLET_SPEED
-			vy = math.sin(direction) * BULLET_SPEED
-			# Create a bullet object with that velocity.
-			b = Bullet(self.shape.x, self.shape.y, vx, vy, self)
-			# Add the recoil of the bullet to the count.
-			recoilx += b.vx
-			recoily += b.vy
+			min_, max_ = self.calcMaxAndMin()
+			recoilx = 0
+			recoily = 0
 
-		# Get the average of all the recoil values and multiply by the recoil factor.	
-		self.vx -= recoilx / self.bullet_count * RECOIL_FACTOR
-		self.vy -= recoily / self.bullet_count * RECOIL_FACTOR
+			for i in range(0, self.bullet_count):
+				# Calculate a random angle between the players crosshairs.
+				direction = min_ + random.random() * (max_ - min_)
+				# Use trig to convert this into a vector.
+				vx = math.cos(direction) * BULLET_SPEED
+				vy = math.sin(direction) * BULLET_SPEED
+				# Create a bullet object with that velocity.
+				b = Bullet(self.shape.x, self.shape.y, vx, vy, self)
+				# Add the recoil of the bullet to the count.
+				recoilx += b.vx
+				recoily += b.vy
 
-		# Decrease the players accuracy each time they shoot.
-		self.accuracy += 5
-		self.accuracy = min(self.accuracy, 60)
+			# Get the average of all the recoil values and multiply by the recoil factor.	
+			self.vx -= recoilx / self.bullet_count * RECOIL_FACTOR
+			self.vy -= recoily / self.bullet_count * RECOIL_FACTOR
+
+			# Decrease the players accuracy each time they shoot.
+			self.accuracy += 5
+			self.accuracy = min(self.accuracy, 60)
 
 	def calcMaxAndMin(self):
 		# Get the x and y of the mouse and make it relative to the players position.

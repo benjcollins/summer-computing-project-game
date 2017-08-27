@@ -16,14 +16,15 @@ import time
 class Game:
 
 	def __init__(self):
-		# Create canvas object and set various its properties.
+		# Create canvas object and set various its properties and callbacks.
 		self.canvas = Canvas(WINDOW_WIDTH, WINDOW_HEIGHT, "Game", ["background", "content", "ui"])
 		self.canvas.setLayerOffset(300, 200, "content")
 		self.canvas.color = "#05050a"
+		self.canvas.on_key_down("space", self.pause)
 
 		# Setup array to hold enemies and counters for health speed and number at a time.
 		self.enemies = []
-		self.enemy_count = 1
+		self.enemy_count = 0
 		self.enemy_health = ENEMY_START_HEALTH
 		self.enemy_speed = ENEMY_START_SPEED
 		self.enemies_killed = 0
@@ -67,6 +68,13 @@ class Game:
 		self.powerup = PowerUp(self)
 		self.player = Player(self)
 
+		# Create pause text.
+		x = WINDOW_WIDTH / 2
+		y = WINDOW_HEIGHT / 2
+		txt = "PAUSE"
+		self.pause = Text(x, y, txt, "#ffffff", layer = "ui", font_size = 80, font_name = "FreeSans Bold")
+		self.paused = False
+
 		# Start the canvas thread.
 		self.canvas.start()
 		self.loop()
@@ -76,7 +84,8 @@ class Game:
 			if self.nextFrame < time.clock():
 				# If its time to compute the next frame do so and reset the next frame variable.
 				self.nextFrame += TIME_STEP
-				self.update()
+				if not self.paused:
+					self.update()
 
 		# Display the 'game over' message.
 		x = WINDOW_WIDTH / 2
@@ -130,5 +139,12 @@ class Game:
 				self.enemies.append(Enemy(self, self.enemy_speed, self.enemy_health))
 				
 		self.score.text = "Enemies Killed: " + str(self.enemies_killed)
+
+	def pause(self):
+		self.paused = not self.paused
+		if self.paused:
+			self.canvas.add(self.pause)
+		else:
+			self.canvas.remove(self.pause)
 
 Game()
