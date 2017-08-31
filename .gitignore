@@ -15,3 +15,14 @@ canvas/__pycache__/canvas.cpython-35.pyc
 canvas/__pycache__/polygon.cpython-35.pyc
 canvas/__pycache__/rect.cpython-35.pyc
 canvas/__pycache__/text.cpython-35.pyc
+code/__pycache__/asteroid.cpython-35.pyc
+code/__pycache__/bullet.cpython-35.pyc
+code/__pycache__/consts.cpython-35.pyc
+code/__pycache__/enemy.cpython-35.pyc
+code/__pycache__/networking.cpython-35.pyc
+code/__pycache__/player.cpython-35.pyc
+code/__pycache__/powerup.cpython-35.pyc
+code/canvas/__pycache__/polygon.cpython-35.pyc
+code/canvas/__pycache__/rect.cpython-35.pyc
+code/canvas/__pycache__/text.cpython-35.pyc
+code/canvas/__pycache__/canvas.cpython-35.pyc
