@@ -41,11 +41,9 @@ class Canvas (Thread):
 		# Create the pygame window with the given size and set the title.
 		self.window = pygame.display.set_mode((self.width, self.height))
 		pygame.display.set_caption(title)
-		
-	def run(self):
-		
-		while self.running:
-			# Get pygame events and if necessary hand them onto the user via a callback.
+
+	def update(self):
+		# Get pygame events and if necessary hand them onto the user via a callback.
 			events = pygame.event.get()
 			for event in events:
 				
@@ -98,13 +96,18 @@ class Canvas (Thread):
 				for shape in layer:
 					shape.draw(self)
 			
-			pygame.display.flip()
+			pygame.display.update()
+		
+	def run(self):
+		
+		while self.running:
+			self.update()
 
 		# When the window is no longer 'running' kill the window.
 		pygame.display.quit()
 		
 	def add(self, shape):
-		# Find the shapes layer and it to that layers list.
+		# Find the shapes layer and add it to that layers list.
 		for i in range(0, len(self.layerNames)):
 			name = self.layerNames[i]
 			if name == shape.layer:
@@ -129,7 +132,7 @@ class Canvas (Thread):
 			if name == layer:
 				return self.layerOffsets[i][1]
 		
-	# Setters the the callbacks.
+	# Setters for the callbacks.
 	def set_on_mouse_down(self, callback):
 		self.on_mouse_down = callback
 		

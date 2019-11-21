@@ -86,6 +86,7 @@ class Game:
 				self.nextFrame += TIME_STEP
 				if not self.paused:
 					self.update()
+					self.canvas.update()
 
 		# Display the 'game over' message.
 		x = WINDOW_WIDTH / 2
