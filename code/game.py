@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# The runnable file for the game that mnages all resources.
+# The runnable file for the game that manages all resources.
 # By BEN COLLINS
 
 from networking import *
